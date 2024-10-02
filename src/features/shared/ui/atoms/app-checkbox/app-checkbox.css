@@ -1,0 +1,28 @@
+.app-checkbox__label {
+  @apply flex w-6 h-6 cursor-pointer relative rounded-full border-2 transition-all duration-300 bg-transparent;
+}
+.app-checkbox__label--md {
+  @apply w-8 h-8;
+}
+.app-checkbox__label--lg {
+  @apply w-12 h-12;
+}
+.app-checkbox__label:hover {
+  @apply border-green-500;
+}
+.app-checkbox__label::after {
+  content: "";
+  @apply absolute top-0 left-0 w-full h-full rounded-full
+    bg-green-500 z-10 opacity-0 scale-0 transition-all duration-200;
+}
+
+.app-checkbox__input {
+  display: none;
+}
+
+.app-checkbox__input:checked ~ .app-checkbox__label {
+  @apply border-green-500;
+}
+.app-checkbox__input:checked ~ .app-checkbox__label::after {
+  @apply opacity-100 scale-100;
+}

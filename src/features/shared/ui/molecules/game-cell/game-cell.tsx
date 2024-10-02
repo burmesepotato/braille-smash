@@ -1,5 +1,6 @@
 import { cn } from "@/features/shared/utils";
 import { BrailleCell } from "@/features/shared/types";
+import { AppCheckbox } from "@/features/shared/ui/atoms";
 
 interface GameCellProps {
   cell: BrailleCell;
@@ -19,16 +20,11 @@ export const GameCell = (props: GameCellProps) => {
       )}
     >
       {cell.map((value, index) => (
-        <div
-          key={index}
-          className={cn(
-            "rounded-full border",
-            value ? "bg-lime-700 border-lime-700" : "border-slate-200",
-            size === "sm" && "w-6 h-6",
-            size === "md" && "w-8 h-8",
-            size === "lg" && "w-16 h-16"
-          )}
-        ></div>
+        <AppCheckbox
+          id={`cell-dot-${index}`}
+          label={`cell-dot-${index}`}
+          defaultChecked={value}
+        />
       ))}
     </div>
   );
