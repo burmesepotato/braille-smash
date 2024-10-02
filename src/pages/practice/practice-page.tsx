@@ -19,7 +19,7 @@ export default function PracticePage() {
               <p className="text-center mb-4 text-xl font-bold">
                 {alphabet.letter}
               </p>
-              <GameCell cell={alphabet.cell} />
+              <GameCell defaultCell={alphabet.cell} id={alphabet.letter} />
             </div>
           ))}
         </section>
