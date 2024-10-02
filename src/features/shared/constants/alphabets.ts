@@ -1,6 +1,6 @@
-import { Alphabet } from "../types";
+import { BrailleAlphabet } from "../types";
 
-export const ALPHABETS: Alphabet[] = [
+export const ALPHABETS: BrailleAlphabet[] = [
   {
     letter: "a",
     cell: [true, false, false, false, false, false],
