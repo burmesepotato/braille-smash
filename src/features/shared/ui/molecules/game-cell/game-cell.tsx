@@ -1,14 +1,31 @@
 import { cn } from "@/features/shared/utils";
 import { BrailleCell } from "@/features/shared/types";
 import { AppCheckbox } from "@/features/shared/ui/atoms";
+import { ChangeEvent, useEffect, useState } from "react";
 
 interface GameCellProps {
-  cell: BrailleCell;
+  id: string;
+  defaultCell: BrailleCell;
+  disabled?: boolean;
   size?: "sm" | "md" | "lg";
+  onChange?: (cell: BrailleCell) => void;
 }
 
 export const GameCell = (props: GameCellProps) => {
-  const { cell, size = "md" } = props;
+  const { id, defaultCell, disabled, size = "md", onChange } = props;
+  const [cell, setCell] = useState<BrailleCell>(defaultCell);
+
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+    setCell((prev) => {
+      const newCell: BrailleCell = [...prev];
+      newCell[index] = e.target.checked;
+      return newCell;
+    });
+  };
+
+  useEffect(() => {
+    onChange?.(cell);
+  }, [cell, onChange]);
 
   return (
     <div
@@ -21,9 +38,14 @@ export const GameCell = (props: GameCellProps) => {
     >
       {cell.map((value, index) => (
         <AppCheckbox
-          id={`cell-dot-${index}`}
-          label={`cell-dot-${index}`}
+          disabled={disabled}
+          key={`cell-${id}-dot-${index}`}
+          id={`cell-${id}-dot-${index}`}
+          label={`cell-${id}-dot-${index}`}
           defaultChecked={value}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            handleOnChange(e, index)
+          }
         />
       ))}
     </div>
