@@ -1,4 +1,4 @@
-import { AppButton } from "@/features/shared/ui";
+import { AppButton, GameSoundButton } from "@/features/shared/ui";
 
 interface AppNavbarProps {
   title?: string;
@@ -8,10 +8,6 @@ interface AppNavbarProps {
 export const AppNavbar = (props: AppNavbarProps) => {
   const { title, onBack } = props;
 
-  const onToggleSound = () => {
-    console.log("TODO: Toggle sound");
-  };
-
   return (
     <nav className="flex items-center justify-between">
       <AppButton label="Exit" onClick={onBack} />
@@ -20,7 +16,7 @@ export const AppNavbar = (props: AppNavbarProps) => {
           <h1 className="text-3xl text-center font-bold">{title}</h1>
         </div>
       )}
-      <AppButton label="Sound Button" onClick={onToggleSound} />
+      <GameSoundButton />
     </nav>
   );
 };
