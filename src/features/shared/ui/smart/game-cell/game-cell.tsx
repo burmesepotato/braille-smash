@@ -12,7 +12,7 @@ interface GameCellProps {
 }
 
 export const GameCell = (props: GameCellProps) => {
-  const { id, defaultCell, disabled, size = "md", onChange } = props;
+  const { id, defaultCell, disabled, size = "sm", onChange } = props;
   const [cell, setCell] = useState<BrailleCell>(defaultCell);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
@@ -33,11 +33,12 @@ export const GameCell = (props: GameCellProps) => {
         "grid grid-rows-3  grid-flow-col gap-4",
         size === "sm" && "grid-cols-[1.5rem_1.5rem]",
         size === "md" && "grid-cols-[2rem_2rem]",
-        size === "lg" && "grid-cols-[4rem_4rem]"
+        size === "lg" && "grid-cols-[3rem_3rem]"
       )}
     >
       {cell.map((value, index) => (
         <AppCheckbox
+          sizeVariant={size}
           disabled={disabled}
           key={`cell-${id}-dot-${index}`}
           id={`cell-${id}-dot-${index}`}

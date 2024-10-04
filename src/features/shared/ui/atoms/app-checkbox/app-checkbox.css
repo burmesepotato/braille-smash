@@ -4,12 +4,15 @@
 }
 
 .app-checkbox__label {
-  @apply flex w-6 h-6 cursor-pointer relative rounded-full border-2 transition-all duration-300 bg-transparent;
+  @apply flex cursor-pointer relative rounded-full border-2 border-gray-300 transition-all duration-300 bg-transparent;
 }
-.app-checkbox__label--md {
+.app-checkbox--sm .app-checkbox__label {
+  @apply w-6 h-6;
+}
+.app-checkbox--md .app-checkbox__label {
   @apply w-8 h-8;
 }
-.app-checkbox__label--lg {
+.app-checkbox--lg .app-checkbox__label {
   @apply w-12 h-12;
 }
 .app-checkbox__label:hover {
@@ -24,7 +27,6 @@
 .app-checkbox__input {
   display: none;
 }
-
 .app-checkbox__input:checked ~ .app-checkbox__label {
   @apply border-green-500;
 }

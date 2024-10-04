@@ -6,6 +6,7 @@ import { BrailleAlphabet, BrailleCell } from "@/features/shared/types";
 import { useEffect, useState } from "react";
 
 const TIMER_SECONDS = 30;
+const MAX_ALPHABET = 10;
 
 export default function QuizPage() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function QuizPage() {
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(TIMER_SECONDS);
   const [alphabet, setAlphabet] = useState<BrailleAlphabet>(
-    getRandomAlphabet(5)
+    getRandomAlphabet(MAX_ALPHABET)
   );
   const [answer, setAnswer] = useState<BrailleCell>(
     new Array(6).fill(false) as BrailleCell
@@ -33,7 +34,7 @@ export default function QuizPage() {
   const resetGame = () => {
     setTimer(TIMER_SECONDS);
     setAnswer(new Array(6).fill(false) as BrailleCell);
-    setAlphabet(getRandomAlphabet(5));
+    setAlphabet(getRandomAlphabet(MAX_ALPHABET));
   };
 
   // On initial load, reset score, game
@@ -56,16 +57,17 @@ export default function QuizPage() {
       <div className="max-w-7xl mx-auto border py-5 flex flex-col gap-5 min-h-screen">
         <AppNavbar onBack={onBack} />
         <div className="flex flex-col items-center gap-8">
-          <section className="flex flex-col gap-3">
-            <p className="text-xl">
+          <section className="flex flex-col gap-8">
+            <p className="text-2xl">
               What is the braille cell of this alphabet?
             </p>
-            <p className="text-3xl font-bold text-center uppercase">
+            <p className="text-7xl font-bold text-center uppercase">
               {alphabet.letter}
             </p>
           </section>
 
           <GameCell
+            size="lg"
             disabled={isGameOver}
             key={`cell-${alphabet.letter}`}
             id={alphabet.letter}
