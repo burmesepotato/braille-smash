@@ -9,8 +9,8 @@ export const LandingPractice = () => {
   };
 
   return (
-    <div className="bento bg-white h-full flex flex-col gap-3 items-start">
-      <h1 className="font-bold text-3xl text-black">Practice Alphabets</h1>
+    <div className="bento  h-full flex flex-col gap-3 items-start">
+      <h1 className="font-bold text-3xl">Practice Alphabets</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, officia!
       </p>

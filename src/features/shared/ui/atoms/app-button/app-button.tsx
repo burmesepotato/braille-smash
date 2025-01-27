@@ -24,7 +24,7 @@ export const AppButton = (props: AppButtonProps) => {
   return (
     <button
       className={cn(
-        " bg-lime-900 text-white rounded-xl flex items-center gap-1.5 justify-center",
+        " bg-white text-black rounded-xl flex items-center gap-1.5 justify-center",
         variant === "default" && VARIANT_DEFAULT,
         variant === "icon" && VARIANT_ICON,
         className

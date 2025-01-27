@@ -3,11 +3,12 @@ import { AppTimerBar, AppTimerCountdown } from "@/features/shared/ui";
 
 interface GameTimerProps {
   seconds: number;
+  onChange?: (seconds: number) => void;
   onTimeout: () => void;
 }
 
 export const GameTimer = (props: GameTimerProps) => {
-  const { seconds, onTimeout } = props;
+  const { seconds, onChange, onTimeout } = props;
   const [remainingSeconds, setRemainingSeconds] = useState(seconds);
 
   useEffect(() => {
@@ -17,6 +18,8 @@ export const GameTimer = (props: GameTimerProps) => {
       return;
     }
 
+    onChange?.(remainingSeconds);
+
     // Set interval to decrease the time every second
     const intervalId = setInterval(() => {
       setRemainingSeconds((prev) => prev - 1);
@@ -24,7 +27,7 @@ export const GameTimer = (props: GameTimerProps) => {
 
     // Clean up the interval when component unmounts or time changes
     return () => clearInterval(intervalId);
-  }, [remainingSeconds]);
+  }, [remainingSeconds, onChange, onTimeout]);
 
   return (
     <div>
