@@ -1,4 +1,4 @@
-import { LandingQuiz, LandingPractice } from "@/features/landing/ui";
+import { LandingQuiz, LandingPractice } from "@/features/landing";
 
 export default function LandingPage() {
   return (

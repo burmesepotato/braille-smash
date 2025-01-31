@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { AppTimerBar, AppTimerCountdown } from "@/features/shared/ui";
 
 interface GameTimerProps {
-  seconds: number;
+  totalSeconds: number;
   onChange?: (seconds: number) => void;
   onTimeout: () => void;
 }
 
 export const GameTimer = (props: GameTimerProps) => {
-  const { seconds, onChange, onTimeout } = props;
-  const [remainingSeconds, setRemainingSeconds] = useState(seconds);
+  const { totalSeconds, onChange, onTimeout } = props;
+  const [remainingSeconds, setRemainingSeconds] = useState(totalSeconds);
 
   useEffect(() => {
     // Return early if time has already reached 0
@@ -32,7 +32,7 @@ export const GameTimer = (props: GameTimerProps) => {
   return (
     <div>
       <AppTimerCountdown seconds={remainingSeconds} />
-      <AppTimerBar total={seconds} remaining={remainingSeconds} />
+      <AppTimerBar total={totalSeconds} remaining={remainingSeconds} />
     </div>
   );
 };

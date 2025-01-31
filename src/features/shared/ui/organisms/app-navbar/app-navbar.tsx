@@ -13,8 +13,9 @@ export const AppNavbar = (props: AppNavbarProps) => {
     <nav className="flex items-center justify-between">
       {onBack && (
         <AppButton
-          prefixIcon={<ArrowLeftStartOnRectangleIcon />}
+          prefixIcon={<ArrowLeftStartOnRectangleIcon className="size-5" />}
           onClick={onBack}
+          variant="icon"
         />
       )}
       {title && (
