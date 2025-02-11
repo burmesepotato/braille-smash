@@ -46,30 +46,32 @@ export const TimerSmash = () => {
   }, [alphabet.cell, answer, isSame]);
 
   return (
-    <section className="flex flex-col items-center gap-8">
-      <GameQuestion
-        question="What is the braille cell of this letter?"
-        letter={alphabet.letter}
-      />
+    <>
+      <section className="flex flex-col items-center gap-8 min-h-screen justify-center">
+        <GameQuestion
+          question="What is the braille cell of this letter?"
+          letter={alphabet.letter}
+        />
 
-      <GameCell
-        size="lg"
-        disabled={isGameOver}
-        key={`cell-${alphabet.letter}`}
-        id={alphabet.letter}
-        defaultCell={answer}
-        onChange={(cell: BrailleCell) => setAnswer(cell)}
-      />
+        <GameCell
+          size="lg"
+          disabled={isGameOver}
+          key={`cell-${alphabet.letter}`}
+          id={alphabet.letter}
+          defaultCell={answer}
+          onChange={(cell: BrailleCell) => setAnswer(cell)}
+        />
 
-      <section>
-        <p className="text-xl">Score: {score}</p>
+        <section>
+          <p className="text-xl">Score: {score}</p>
+        </section>
+
+        <GameTimer
+          key={`timer-${alphabet.letter}`}
+          totalSeconds={timer}
+          onTimeout={onTimeout}
+        />
       </section>
-
-      <GameTimer
-        key={`timer-${alphabet.letter}`}
-        totalSeconds={timer}
-        onTimeout={onTimeout}
-      />
-    </section>
+    </>
   );
 };

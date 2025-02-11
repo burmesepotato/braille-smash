@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 export default function PracticePage() {
   const navigate = useNavigate();
 
-  const onBack = () => {
+  const handleBack = () => {
     navigate("/");
   };
 
   return (
     <main>
-      <div className="max-w-7xl mx-auto border py-5 flex flex-col gap-5">
-        <AppNavbar title="Practice Alphabets" onBack={onBack} />
+      <div className="max-w-screen-2xl mx-auto border py-5 flex flex-col gap-5">
+        <AppNavbar onBack={handleBack} />
         <section className="grid grid-cols-5 gap-y-12 gap-x-5 justify-items-center">
           {ALPHABETS.map((alphabet) => (
             <div key={alphabet.letter}>

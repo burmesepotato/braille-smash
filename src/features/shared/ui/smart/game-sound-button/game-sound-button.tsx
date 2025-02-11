@@ -2,12 +2,12 @@ import { SpeakerWaveIcon, SpeakerXMarkIcon } from "@heroicons/react/24/outline";
 import { AppButton } from "@/features/shared/ui";
 import { useState } from "react";
 
-const ICON_CLASSNAME = "size-5";
+const ICON_CLASSNAME = "size-8";
 
 export const GameSoundButton = () => {
   const [isOn, setIsOn] = useState(false);
 
-  const onToggle = () => {
+  const handleToggle = () => {
     setIsOn((prev) => !prev);
     console.log("TODO: Toggle sound");
   };
@@ -15,7 +15,7 @@ export const GameSoundButton = () => {
   return (
     <AppButton
       aria-label={isOn ? "Switch Off Sound" : "Switch On Sound"}
-      onClick={onToggle}
+      onClick={handleToggle}
       prefixIcon={
         isOn ? (
           <SpeakerXMarkIcon className={ICON_CLASSNAME} />

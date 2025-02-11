@@ -1,6 +1,11 @@
 import { RouteObject } from "react-router-dom";
 
-import { QuizPage, LandingPage, PracticePage, QuizPlayPage } from "@/pages";
+import {
+  QuizChoosePage,
+  LandingPage,
+  PracticePage,
+  QuizPlayPage,
+} from "@/pages";
 
 export const rootRoute: RouteObject = {
   path: "/",
@@ -15,7 +20,7 @@ export const rootRoute: RouteObject = {
       children: [
         {
           index: true,
-          element: <QuizPage />,
+          element: <QuizChoosePage />,
         },
         {
           path: "play",
