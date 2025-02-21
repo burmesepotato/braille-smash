@@ -67,6 +67,7 @@ export const TimerSmash = () => {
         </section>
 
         <GameTimer
+          isPaused
           key={`timer-${alphabet.letter}`}
           totalSeconds={timer}
           onTimeout={onTimeout}

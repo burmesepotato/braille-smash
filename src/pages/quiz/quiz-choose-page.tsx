@@ -12,7 +12,7 @@ export default function QuizChoosePage() {
   return (
     <main className="max-w-screen-2xl mx-auto px-8">
       <div className="flex flex-col min-h-screen">
-        <AppNavbar textBack="Back to Main Menu" onBack={handleBack} />
+        <AppNavbar backBtnText="Back to Main Menu" onBack={handleBack} />
         <QuizChooseMode />
       </div>
     </main>
