@@ -2,8 +2,8 @@ import { LandingQuiz, LandingPractice } from "@/features/landing";
 
 export default function LandingPage() {
   return (
-    <main className="">
-      <div className="max-w-7xl mx-auto">
+    <main>
+      <div className="max-w-screen-2xl mx-auto">
         <div className="min-h-screen grid lg:grid-cols-2 gap-8 grid-rows-5 p-8">
           <section className="row-span-5 bento">
             <div className="flex flex-col gap-12 h-full">

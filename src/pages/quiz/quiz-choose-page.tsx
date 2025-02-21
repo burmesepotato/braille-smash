@@ -2,17 +2,17 @@ import { QuizChooseMode } from "@/features/quiz";
 import { AppNavbar } from "@/features/shared/ui";
 import { useNavigate } from "react-router-dom";
 
-export default function QuizPage() {
+export default function QuizChoosePage() {
   const navigate = useNavigate();
 
-  const onBack = () => {
+  const handleBack = () => {
     navigate("/");
   };
 
   return (
-    <main>
-      <div className="max-w-7xl mx-auto py-5 flex flex-col gap-5 min-h-screen">
-        <AppNavbar onBack={onBack} />
+    <main className="max-w-screen-2xl mx-auto px-8">
+      <div className="flex flex-col min-h-screen">
+        <AppNavbar backBtnText="Back to Main Menu" onBack={handleBack} />
         <QuizChooseMode />
       </div>
     </main>

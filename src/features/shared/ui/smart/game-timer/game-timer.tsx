@@ -3,31 +3,34 @@ import { AppTimerBar, AppTimerCountdown } from "@/features/shared/ui";
 
 interface GameTimerProps {
   totalSeconds: number;
+  isPaused?: boolean;
   onChange?: (seconds: number) => void;
   onTimeout: () => void;
 }
 
 export const GameTimer = (props: GameTimerProps) => {
-  const { totalSeconds, onChange, onTimeout } = props;
+  const { totalSeconds, isPaused = false, onChange, onTimeout } = props;
   const [remainingSeconds, setRemainingSeconds] = useState(totalSeconds);
 
   useEffect(() => {
-    // Return early if time has already reached 0
-    if (remainingSeconds <= 0) {
-      onTimeout();
-      return;
+    if (!isPaused) {
+      // Return early if time has already reached 0
+      if (remainingSeconds <= 0) {
+        onTimeout();
+        return;
+      }
+
+      onChange?.(remainingSeconds);
+
+      // Set interval to decrease the time every second
+      const intervalId = setInterval(() => {
+        setRemainingSeconds((prev) => prev - 1);
+      }, 1000);
+
+      // Clean up the interval when component unmounts or time changes
+      return () => clearInterval(intervalId);
     }
-
-    onChange?.(remainingSeconds);
-
-    // Set interval to decrease the time every second
-    const intervalId = setInterval(() => {
-      setRemainingSeconds((prev) => prev - 1);
-    }, 1000);
-
-    // Clean up the interval when component unmounts or time changes
-    return () => clearInterval(intervalId);
-  }, [remainingSeconds, onChange, onTimeout]);
+  }, [remainingSeconds, onChange, onTimeout, isPaused]);
 
   return (
     <div>

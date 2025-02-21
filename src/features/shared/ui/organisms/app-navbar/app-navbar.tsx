@@ -1,29 +1,30 @@
-import { AppButton, GameSoundButton } from "@/features/shared/ui";
-import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
+import { AppButton } from "@/features/shared/ui";
+import { ReactNode } from "react";
 
 interface AppNavbarProps {
-  title?: string;
+  children?: ReactNode;
+  backBtnText?: string;
+  backBtnIcon?: ReactNode;
   onBack?: () => void;
 }
 
 export const AppNavbar = (props: AppNavbarProps) => {
-  const { title, onBack } = props;
+  const { children, backBtnText, backBtnIcon, onBack } = props;
 
   return (
-    <nav className="flex items-center justify-between">
-      {onBack && (
-        <AppButton
-          prefixIcon={<ArrowLeftStartOnRectangleIcon className="size-5" />}
-          onClick={onBack}
-          variant="icon"
-        />
-      )}
-      {title && (
-        <div>
-          <h1 className="text-3xl text-center font-bold">{title}</h1>
-        </div>
-      )}
-      <GameSoundButton />
+    <nav className="h-18 py-4 fixed inset-x-0 top-0 z-10">
+      <div className="max-w-screen-2xl flex items-center justify-between mx-auto px-8">
+        {onBack && (
+          <AppButton
+            label={backBtnText}
+            prefixIcon={backBtnIcon}
+            onClick={onBack}
+            variant="transparent"
+          />
+        )}
+        {children}
+        {/* <GameSoundButton /> */}
+      </div>
     </nav>
   );
 };

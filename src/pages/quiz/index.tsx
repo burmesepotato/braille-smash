@@ -1,10 +1,10 @@
 import { Suspense, lazy } from "react";
 
-const LazyQuizPage = lazy(() => import("./quiz-page"));
-export function QuizPage() {
+const LazyQuizChoosePage = lazy(() => import("./quiz-choose-page"));
+export function QuizChoosePage() {
   return (
     <Suspense fallback={<p>Loading</p>}>
-      <LazyQuizPage />
+      <LazyQuizChoosePage />
     </Suspense>
   );
 }
