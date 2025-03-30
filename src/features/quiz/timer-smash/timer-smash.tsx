@@ -6,7 +6,7 @@ import { useRecoilState } from "recoil";
 import { quizGameState } from "@/features/shared/states";
 
 const TIMER_SECONDS = 30;
-const MAX_ALPHABET = 3;
+const MAX_ALPHABET = 5;
 
 export const TimerSmash = () => {
   const { getRandomAlphabet, isSame } = useAlphabet();
@@ -56,12 +56,12 @@ export const TimerSmash = () => {
         />
 
         <GameCell
-          size="lg"
+          alphabet={alphabet}
           disabled={isGameOver}
           key={`cell-${alphabet.letter}`}
-          id={alphabet.letter}
-          defaultCell={answer}
           onChange={handleAnswerChange}
+          size="lg"
+          value={answer}
         />
 
         <section>

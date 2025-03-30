@@ -4,7 +4,7 @@
 }
 
 .app-checkbox__label {
-  @apply flex cursor-pointer relative rounded-full border-2 border-gray-300 transition-all duration-300 bg-transparent;
+  @apply flex cursor-pointer relative rounded-full border-[3px] border-gray-300 transition-all duration-300 bg-transparent;
 }
 .app-checkbox--sm .app-checkbox__label {
   @apply w-6 h-6;
@@ -16,20 +16,24 @@
   @apply w-12 h-12;
 }
 .app-checkbox__label:hover {
-  @apply border-green-500;
+  @apply border-dashed;
 }
 .app-checkbox__label::after {
   content: "";
   @apply absolute top-0 left-0 w-full h-full rounded-full
-    bg-green-500 z-10 opacity-0 scale-0 transition-all duration-200;
+    bg-transparent z-10 scale-0 transition-all duration-200;
 }
 
 .app-checkbox__input {
   display: none;
 }
-.app-checkbox__input:checked ~ .app-checkbox__label {
+.app-checkbox__input:checked:not(.error) ~ .app-checkbox__label {
   @apply border-green-500;
 }
-.app-checkbox__input:checked ~ .app-checkbox__label::after {
-  @apply opacity-100 scale-100;
+.app-checkbox__input:checked:not(.error) ~ .app-checkbox__label::after {
+  @apply bg-green-500 scale-100;
+}
+
+.app-checkbox__input:checked.error ~ .app-checkbox__label::after {
+  @apply bg-[url('/x.svg')] scale-100;
 }

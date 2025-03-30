@@ -1,11 +1,12 @@
 import { ChangeEvent, InputHTMLAttributes, useState } from "react";
+import { cn } from "@/features/shared/utils";
 import "./app-checkbox.css";
-import clsx from "clsx";
 
 interface AppCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   label: string;
   disabled?: boolean;
+  showError?: boolean;
   sizeVariant?: "sm" | "md" | "lg";
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
@@ -16,6 +17,7 @@ export const AppCheckbox = (props: AppCheckboxProps) => {
     disabled,
     label,
     id,
+    showError,
     sizeVariant = "sm",
     onChange,
   } = props;
@@ -28,7 +30,7 @@ export const AppCheckbox = (props: AppCheckboxProps) => {
 
   return (
     <div
-      className={clsx(
+      className={cn(
         "app-checkbox",
         disabled && "app-checkbox--disabled",
         sizeVariant === "sm" && "app-checkbox--sm",
@@ -37,7 +39,7 @@ export const AppCheckbox = (props: AppCheckboxProps) => {
       )}
     >
       <input
-        className="app-checkbox__input"
+        className={cn("app-checkbox__input", showError && "error")}
         type="checkbox"
         id={id}
         aria-checked={checked}

@@ -1,22 +1,28 @@
 import { cn } from "@/features/shared/utils";
-import { BrailleCell } from "@/features/shared/types";
+import { BrailleAlphabet, BrailleCell } from "@/features/shared/types";
 import { AppCheckbox } from "@/features/shared/ui/atoms";
 import { ChangeEvent, useEffect, useState } from "react";
 
 interface GameCellProps {
-  id: string;
-  defaultCell: BrailleCell;
+  alphabet: BrailleAlphabet;
+  value: BrailleCell;
   disabled?: boolean;
   size?: "sm" | "md" | "lg";
   onChange?: (cell: BrailleCell) => void;
 }
 
 export const GameCell = (props: GameCellProps) => {
-  const { id, defaultCell, disabled, size = "sm", onChange } = props;
-  const [cell, setCell] = useState<BrailleCell>(defaultCell);
+  const {
+    alphabet: { letter, cell: answerCell },
+    value,
+    disabled,
+    size = "sm",
+    onChange,
+  } = props;
+  const [currentCell, setCurrentCell] = useState<BrailleCell>(value);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
-    setCell((prev) => {
+    setCurrentCell((prev) => {
       const newCell: BrailleCell = [...prev];
       newCell[index] = e.target.checked;
       return newCell;
@@ -24,8 +30,8 @@ export const GameCell = (props: GameCellProps) => {
   };
 
   useEffect(() => {
-    onChange?.(cell);
-  }, [cell, onChange]);
+    onChange?.(currentCell);
+  }, [currentCell, onChange]);
 
   return (
     <div
@@ -36,17 +42,18 @@ export const GameCell = (props: GameCellProps) => {
         size === "lg" && "grid-cols-[3rem_3rem]"
       )}
     >
-      {cell.map((value, index) => (
+      {currentCell.map((value, index) => (
         <AppCheckbox
           sizeVariant={size}
           disabled={disabled}
-          key={`cell-${id}-dot-${index}`}
-          id={`cell-${id}-dot-${index}`}
-          label={`cell-${id}-dot-${index}`}
+          key={`cell-${letter}-dot-${index}`}
+          id={`cell-${letter}-dot-${index}`}
+          label={`cell-${letter}-dot-${index}`}
           defaultChecked={value}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             handleOnChange(e, index)
           }
+          showError={answerCell[index] !== currentCell[index]}
         />
       ))}
     </div>
