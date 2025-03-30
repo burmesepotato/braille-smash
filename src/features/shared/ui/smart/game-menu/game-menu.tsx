@@ -14,7 +14,7 @@ export const GameMenu = (props: GameMenuProps) => {
 
   return (
     <AppMenuOverlay onClose={onClose} isOpen={isOpen}>
-      <div className="flex flex-col gap-4 justify-center grow">
+      <div className="flex flex-col gap-4 justify-center items-center grow">
         <AppButton
           variant="transparent"
           label="Continue Playing"

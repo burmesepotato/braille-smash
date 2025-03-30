@@ -6,33 +6,36 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { quizGameState } from "@/features/shared/states";
 
 export default function QuizPlayPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state;
   const mode = data.mode;
+  const setGameState = useSetRecoilState(quizGameState);
 
   const [showMenu, setShowMenu] = useState(false);
 
   const handleCloseMenu = () => {
     setShowMenu(false);
+    setGameState((prev) => ({ ...prev, isPause: false }));
   };
-  const handleLeaveGame = () => {
-    // TODO: Set state to pause game
+  const handleOpenMenu = () => {
+    setGameState((prev) => ({ ...prev, isPause: true }));
     setShowMenu(true);
   };
   const handleSettings = () => {
     console.log("Clicked Settings");
   };
-  const handleContinueGame = () => {
-    // TODO: Set state to resume game
+
+  const handleRestartGame = () => {
+    setGameState((prev) => ({ ...prev, score: 0 }));
+    handleCloseMenu();
   };
 
-  const handleRestartGame = () => {};
-
   const handleQuitGame = () => {
-    // TODO: Set state to terminate game
     navigate("/quiz");
   };
 
@@ -41,7 +44,7 @@ export default function QuizPlayPage() {
       <GameMenu
         onClose={handleCloseMenu}
         isOpen={showMenu}
-        onContinueGame={handleContinueGame}
+        onContinueGame={handleCloseMenu}
         onQuitGame={handleQuitGame}
         onRestartGame={handleRestartGame}
       />
@@ -49,7 +52,7 @@ export default function QuizPlayPage() {
         <AppNavbar
           backBtnText="Leave Game"
           backBtnIcon={<ArrowLeftStartOnRectangleIcon className="size-8" />}
-          onBack={handleLeaveGame}
+          onBack={handleOpenMenu}
         >
           <AppButton
             prefixIcon={<Cog6ToothIcon className="size-8" />}

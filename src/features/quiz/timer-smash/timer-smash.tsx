@@ -2,12 +2,16 @@ import { useAlphabet } from "@/features/shared/hooks";
 import { BrailleAlphabet, BrailleCell } from "@/features/shared/types";
 import { GameQuestion, GameCell, GameTimer } from "@/features/shared/ui";
 import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { quizGameState } from "@/features/shared/states";
 
 const TIMER_SECONDS = 30;
-const MAX_ALPHABET = 10;
+const MAX_ALPHABET = 5;
 
 export const TimerSmash = () => {
   const { getRandomAlphabet, isSame } = useAlphabet();
+
+  const [{ isPause }] = useRecoilState(quizGameState);
 
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
@@ -19,7 +23,15 @@ export const TimerSmash = () => {
     new Array(6).fill(false) as BrailleCell
   );
 
-  const onTimeout = () => {
+  const handleAnswerChange = (cell: BrailleCell) => {
+    const isCorrect = isSame(alphabet.cell, cell);
+    if (isCorrect) {
+      setScore((prev) => prev + 1);
+      resetGame();
+    }
+  };
+
+  const handleTimeout = () => {
     setIsGameOver(true);
   };
 
@@ -32,18 +44,8 @@ export const TimerSmash = () => {
 
   // On initial load, reset score, game
   useEffect(() => {
-    setScore(0);
     resetGame();
   }, []);
-
-  // On answer update, If correct, reset game.
-  useEffect(() => {
-    const isCorrect = isSame(alphabet.cell, answer);
-    if (isCorrect) {
-      setScore((prev) => prev + 1);
-      resetGame();
-    }
-  }, [alphabet.cell, answer, isSame]);
 
   return (
     <>
@@ -54,12 +56,12 @@ export const TimerSmash = () => {
         />
 
         <GameCell
-          size="lg"
+          alphabet={alphabet}
           disabled={isGameOver}
           key={`cell-${alphabet.letter}`}
-          id={alphabet.letter}
-          defaultCell={answer}
-          onChange={(cell: BrailleCell) => setAnswer(cell)}
+          onChange={handleAnswerChange}
+          size="lg"
+          value={answer}
         />
 
         <section>
@@ -67,10 +69,10 @@ export const TimerSmash = () => {
         </section>
 
         <GameTimer
-          isPaused
+          isPaused={isPause}
           key={`timer-${alphabet.letter}`}
           totalSeconds={timer}
-          onTimeout={onTimeout}
+          onTimeout={handleTimeout}
         />
       </section>
     </>
