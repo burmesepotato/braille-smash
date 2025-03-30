@@ -1,11 +1,18 @@
 import { GameMode } from "@/features/shared/types";
 import { AppButton } from "@/features/shared/ui";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { quizGameState } from "@/features/shared/states";
 
 export const QuizChooseMode = () => {
   const navigate = useNavigate();
+  const setQuizGameState = useSetRecoilState(quizGameState);
 
   const handleSelect = (mode: GameMode) => {
+    setQuizGameState({
+      isPause: false,
+      score: 0,
+    });
     navigate("/quiz/play", {
       state: { mode },
     });
