@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { quizGameState } from "@/features/shared/states";
 
 export default function QuizPlayPage() {
@@ -14,16 +14,16 @@ export default function QuizPlayPage() {
   const navigate = useNavigate();
   const data = location.state;
   const mode = data.mode;
-  const setGameState = useSetRecoilState(quizGameState);
+  const [{ isGameOver }, setGameState] = useRecoilState(quizGameState);
 
   const [showMenu, setShowMenu] = useState(false);
 
   const handleCloseMenu = () => {
     setShowMenu(false);
-    setGameState((prev) => ({ ...prev, isPause: false }));
+    setGameState((prev) => ({ ...prev, isPaused: false }));
   };
   const handleOpenMenu = () => {
-    setGameState((prev) => ({ ...prev, isPause: true }));
+    setGameState((prev) => ({ ...prev, isPaused: true }));
     setShowMenu(true);
   };
   const handleSettings = () => {
@@ -31,7 +31,7 @@ export default function QuizPlayPage() {
   };
 
   const handleRestartGame = () => {
-    setGameState((prev) => ({ ...prev, score: 0 }));
+    setGameState((prev) => ({ ...prev, isGameOver: false, score: 0 }));
     handleCloseMenu();
   };
 
@@ -47,6 +47,7 @@ export default function QuizPlayPage() {
         onContinueGame={handleCloseMenu}
         onQuitGame={handleQuitGame}
         onRestartGame={handleRestartGame}
+        showContinueBtn={!isGameOver}
       />
       <main className="max-w-screen-2xl mx-auto">
         <AppNavbar

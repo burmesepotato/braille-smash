@@ -7,6 +7,6 @@ interface TimerSmashState {
 export const timerSmashState = atom<TimerSmashState>({
   key: "timerSmashState",
   default: {
-    timer: 30,
+    timer: 0,
   },
 });

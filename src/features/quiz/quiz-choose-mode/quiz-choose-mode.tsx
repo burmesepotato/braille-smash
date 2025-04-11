@@ -10,7 +10,9 @@ export const QuizChooseMode = () => {
 
   const handleSelect = (mode: GameMode) => {
     setQuizGameState({
-      isPause: false,
+      difficulty: "MEDIUM",
+      isGameOver: false,
+      isPaused: false,
       score: 0,
     });
     navigate("/quiz/play", {

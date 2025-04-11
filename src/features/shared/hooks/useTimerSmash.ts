@@ -1,12 +1,14 @@
-import { useRecoilState } from "recoil";
-import { timerSmashState } from "../states";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { quizGameState, timerSmashState } from "../states";
+import { MAX_TIME } from "../constants";
 
 export const useTimerSmash = () => {
   const [timerSmash, setTimerSmash] = useRecoilState(timerSmashState);
+  const { difficulty } = useRecoilValue(quizGameState);
 
   const resetTimer = () => {
     setTimerSmash(() => ({
-      timer: 30,
+      timer: MAX_TIME[difficulty],
     }));
   };
 

@@ -1,7 +1,7 @@
 import { useAlphabet } from "@/features/shared/hooks";
 import { BrailleAlphabet, BrailleCell } from "@/features/shared/types";
 import { GameQuestion, GameCell, GameTimer } from "@/features/shared/ui";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { quizGameState } from "@/features/shared/states";
 import { useTimerSmash } from "@/features/shared/hooks";
@@ -12,9 +12,9 @@ export const TimerSmash = () => {
   const { getRandomAlphabet, isSameCell } = useAlphabet();
   const { timer, resetTimer } = useTimerSmash();
 
-  const [{ isPause }] = useRecoilState(quizGameState);
+  const [{ isGameOver, isPaused }, setQuizGameState] =
+    useRecoilState(quizGameState);
 
-  const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [alphabet, setAlphabet] = useState<BrailleAlphabet>(
     getRandomAlphabet(MAX_ALPHABET)
@@ -33,9 +33,12 @@ export const TimerSmash = () => {
     [alphabet.cell]
   );
 
-  const handleTimeout = () => {
-    setIsGameOver(true);
-  };
+  const handleTimeout = useCallback(() => {
+    setQuizGameState((prev) => ({
+      ...prev,
+      isGameOver: true,
+    }));
+  }, []);
 
   // Reset timer, score, answer, get random alphabet
   const resetGame = () => {
@@ -43,6 +46,12 @@ export const TimerSmash = () => {
     setAnswer(new Array(6).fill(false) as BrailleCell);
     setAlphabet(getRandomAlphabet(MAX_ALPHABET));
   };
+
+  useEffect(() => {
+    if (isGameOver) {
+      resetGame();
+    }
+  }, [isGameOver]);
 
   return (
     <>
@@ -66,7 +75,7 @@ export const TimerSmash = () => {
         </section>
 
         <GameTimer
-          isPaused={isPause}
+          isPaused={isPaused}
           key={`timer-${alphabet.letter}`}
           totalSeconds={timer}
           onTimeout={handleTimeout}

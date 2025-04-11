@@ -7,20 +7,30 @@ interface GameMenuProps {
   onContinueGame: () => void;
   onRestartGame: () => void;
   onQuitGame: () => void;
+  showContinueBtn?: boolean;
 }
 
 export const GameMenu = (props: GameMenuProps) => {
-  const { isOpen, onClose, onContinueGame, onRestartGame, onQuitGame } = props;
+  const {
+    isOpen,
+    onClose,
+    onContinueGame,
+    onRestartGame,
+    onQuitGame,
+    showContinueBtn,
+  } = props;
 
   return (
     <AppMenuOverlay onClose={onClose} isOpen={isOpen}>
       <div className="flex flex-col gap-4 justify-center items-center grow">
-        <AppButton
-          variant="transparent"
-          label="Continue Playing"
-          size="lg"
-          onClick={onContinueGame}
-        />
+        {showContinueBtn && (
+          <AppButton
+            variant="transparent"
+            label="Continue Playing"
+            size="lg"
+            onClick={onContinueGame}
+          />
+        )}
         <AppButton
           variant="transparent"
           label="Restart Game"
