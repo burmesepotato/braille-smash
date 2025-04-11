@@ -1,21 +1,21 @@
 import { useAlphabet } from "@/features/shared/hooks";
 import { BrailleAlphabet, BrailleCell } from "@/features/shared/types";
 import { GameQuestion, GameCell, GameTimer } from "@/features/shared/ui";
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { quizGameState } from "@/features/shared/states";
+import { useTimerSmash } from "@/features/shared/hooks";
 
-const TIMER_SECONDS = 30;
 const MAX_ALPHABET = 5;
 
 export const TimerSmash = () => {
-  const { getRandomAlphabet, isSame } = useAlphabet();
+  const { getRandomAlphabet, isSameCell } = useAlphabet();
+  const { timer, resetTimer } = useTimerSmash();
 
   const [{ isPause }] = useRecoilState(quizGameState);
 
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(TIMER_SECONDS);
   const [alphabet, setAlphabet] = useState<BrailleAlphabet>(
     getRandomAlphabet(MAX_ALPHABET)
   );
@@ -23,13 +23,15 @@ export const TimerSmash = () => {
     new Array(6).fill(false) as BrailleCell
   );
 
-  const handleAnswerChange = (cell: BrailleCell) => {
-    const isCorrect = isSame(alphabet.cell, cell);
-    if (isCorrect) {
-      setScore((prev) => prev + 1);
-      resetGame();
-    }
-  };
+  const handleAnswerChange = useCallback(
+    (cell: BrailleCell) => {
+      if (isSameCell(alphabet.cell, cell)) {
+        setScore((prev) => prev + 1);
+        resetGame();
+      }
+    },
+    [alphabet.cell]
+  );
 
   const handleTimeout = () => {
     setIsGameOver(true);
@@ -37,15 +39,10 @@ export const TimerSmash = () => {
 
   // Reset timer, score, answer, get random alphabet
   const resetGame = () => {
-    setTimer(TIMER_SECONDS);
+    resetTimer();
     setAnswer(new Array(6).fill(false) as BrailleCell);
     setAlphabet(getRandomAlphabet(MAX_ALPHABET));
   };
-
-  // On initial load, reset score, game
-  useEffect(() => {
-    resetGame();
-  }, []);
 
   return (
     <>

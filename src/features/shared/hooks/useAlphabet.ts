@@ -8,12 +8,12 @@ export const useAlphabet = () => {
     return ALPHABETS[randomIndex];
   };
 
-  const isSame = (cellA: BrailleCell, cellB: BrailleCell) => {
+  const isSameCell = (cellA: BrailleCell, cellB: BrailleCell) => {
     return JSON.stringify(cellA) === JSON.stringify(cellB);
   };
 
   return {
     getRandomAlphabet,
-    isSame,
+    isSameCell,
   };
 };
