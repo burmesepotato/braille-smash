@@ -1,10 +1,10 @@
-import { cn } from "@/features/shared/utils";
-import { BrailleAlphabet, BrailleCell } from "@/features/shared/types";
-import { AppCheckbox } from "@/features/shared/ui/atoms";
+import { cn } from "@/utils";
+import { BrailleCharacter, BrailleCell } from "@/features/shared/types";
+import { AppCheckbox } from "@/components/atoms";
 import { ChangeEvent, useEffect, useState } from "react";
 
 interface GameCellProps {
-  alphabet: BrailleAlphabet;
+  character: BrailleCharacter;
   value: BrailleCell;
   disabled?: boolean;
   size?: "sm" | "md" | "lg";
@@ -13,7 +13,7 @@ interface GameCellProps {
 
 export const GameCell = (props: GameCellProps) => {
   const {
-    alphabet: { letter, cell: answerCell },
+    character: { letter, cell: answerCell },
     value,
     disabled,
     size = "sm",

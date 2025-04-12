@@ -1,5 +1,5 @@
 import { SpeakerWaveIcon, SpeakerXMarkIcon } from "@heroicons/react/24/outline";
-import { AppButton } from "@/features/shared/ui";
+import { AppButton } from "@/components";
 import { useState } from "react";
 
 const ICON_CLASSNAME = "size-8";

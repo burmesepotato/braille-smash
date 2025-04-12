@@ -1,5 +1,5 @@
 import { ChangeEvent, InputHTMLAttributes, useState } from "react";
-import { cn } from "@/features/shared/utils";
+import { cn } from "@/utils";
 import "./app-checkbox.css";
 
 interface AppCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {

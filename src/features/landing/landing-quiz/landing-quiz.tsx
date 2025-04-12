@@ -1,4 +1,4 @@
-import { AppButton } from "@/features/shared/ui";
+import { AppButton } from "@/components";
 import { useNavigate } from "react-router-dom";
 
 export const LandingQuiz = () => {

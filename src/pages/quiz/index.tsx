@@ -9,11 +9,11 @@ export function QuizChoosePage() {
   );
 }
 
-const LazyQuizPlayPage = lazy(() => import("./quiz-play-page"));
-export function QuizPlayPage() {
+const LazyTimerSmashPage = lazy(() => import("./timer-smash-page"));
+export function TimerSmashPage() {
   return (
     <Suspense fallback={<p>Loading</p>}>
-      <LazyQuizPlayPage />
+      <LazyTimerSmashPage />
     </Suspense>
   );
 }

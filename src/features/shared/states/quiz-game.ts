@@ -1,16 +1,19 @@
 import { atom } from "recoil";
+import { GameDifficulty } from "../types";
 
 interface QuizGameState {
-  // isGameOver: boolean;
-  isPause: boolean;
+  difficulty: GameDifficulty;
+  isGameOver: boolean;
+  isPaused: boolean;
   score: number;
 }
 
 export const quizGameState = atom<QuizGameState>({
   key: "quizGameState",
   default: {
-    // isGameOver: false,
-    isPause: false,
+    difficulty: "EASY",
+    isGameOver: false,
+    isPaused: false,
     score: 0,
   },
 });

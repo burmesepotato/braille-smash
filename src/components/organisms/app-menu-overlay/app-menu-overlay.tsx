@@ -1,6 +1,6 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { AppButton } from "../../atoms";
-import { cn } from "@/features/shared/utils";
+import { cn } from "@/utils";
 import { ReactNode } from "react";
 
 interface AppMenuOverlayProps {
