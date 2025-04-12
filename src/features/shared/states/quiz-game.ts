@@ -11,7 +11,7 @@ interface QuizGameState {
 export const quizGameState = atom<QuizGameState>({
   key: "quizGameState",
   default: {
-    difficulty: "MEDIUM",
+    difficulty: "EASY",
     isGameOver: false,
     isPaused: false,
     score: 0,

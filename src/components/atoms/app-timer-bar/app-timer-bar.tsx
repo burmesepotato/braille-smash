@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { cn } from "@/features/shared/utils";
+import { cn } from "@/utils";
 
 interface AppTimerBarProps {
   total: number;

@@ -1,6 +1,6 @@
-import { BrailleAlphabet } from "../types";
+import { BrailleCharacter } from "../types";
 
-export const ALPHABETS: BrailleAlphabet[] = [
+export const ALPHABETS: BrailleCharacter[] = [
   {
     letter: "a",
     cell: [true, false, false, false, false, false],
@@ -104,5 +104,48 @@ export const ALPHABETS: BrailleAlphabet[] = [
   {
     letter: "z",
     cell: [true, false, true, false, true, true],
+  },
+];
+
+export const NUMBERS: BrailleCharacter[] = [
+  {
+    letter: "1",
+    cell: [true, false, false, false, false, false],
+  },
+  {
+    letter: "2",
+    cell: [true, true, false, false, false, false],
+  },
+  {
+    letter: "3",
+    cell: [true, false, false, true, false, false],
+  },
+  {
+    letter: "4",
+    cell: [true, false, false, true, true, false],
+  },
+  {
+    letter: "5",
+    cell: [true, false, false, false, true, false],
+  },
+  {
+    letter: "6",
+    cell: [true, true, false, true, false, false],
+  },
+  {
+    letter: "7",
+    cell: [true, true, false, true, true, false],
+  },
+  {
+    letter: "8",
+    cell: [true, true, false, false, true, false],
+  },
+  {
+    letter: "9",
+    cell: [false, true, false, true, false, false],
+  },
+  {
+    letter: "0",
+    cell: [false, true, false, true, true, false],
   },
 ];

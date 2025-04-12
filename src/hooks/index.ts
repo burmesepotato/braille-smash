@@ -1,2 +1,2 @@
-export * from "./useAlphabet";
+export * from "./useCharacter";
 export * from "./useTimerSmash";

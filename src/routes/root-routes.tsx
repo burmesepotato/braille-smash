@@ -4,7 +4,7 @@ import {
   QuizChoosePage,
   LandingPage,
   PracticePage,
-  QuizPlayPage,
+  TimerSmashPage,
 } from "@/pages";
 
 export const rootRoute: RouteObject = {
@@ -23,8 +23,8 @@ export const rootRoute: RouteObject = {
           element: <QuizChoosePage />,
         },
         {
-          path: "play",
-          element: <QuizPlayPage />,
+          path: "timer-smash",
+          element: <TimerSmashPage />,
         },
       ],
     },

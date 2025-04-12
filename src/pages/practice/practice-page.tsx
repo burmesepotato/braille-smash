@@ -1,5 +1,5 @@
 import { ALPHABETS } from "@/features/shared/constants";
-import { AppNavbar, GameCell } from "@/features/shared/ui";
+import { AppNavbar, GameCell } from "@/components";
 import { useNavigate } from "react-router-dom";
 
 export default function PracticePage() {
@@ -19,7 +19,11 @@ export default function PracticePage() {
               <p className="text-center mb-4 text-xl font-bold">
                 {alphabet.letter}
               </p>
-              <GameCell defaultCell={alphabet.cell} id={alphabet.letter} />
+              <GameCell
+                character={alphabet}
+                key={`cell-${alphabet.letter}`}
+                value={alphabet.cell}
+              />
             </div>
           ))}
         </section>

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { AppButton } from "@/features/shared/ui";
+import { AppButton } from "@/components";
 
 export const LandingPractice = () => {
   const navigate = useNavigate();

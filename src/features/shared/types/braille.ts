@@ -17,7 +17,7 @@ export type BrailleCell = [
   boolean
 ];
 
-export interface BrailleAlphabet {
+export interface BrailleCharacter {
   letter: string;
   cell: BrailleCell;
 }

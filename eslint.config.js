@@ -24,7 +24,6 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       semi: 0,
-      "eslint.autoFixOnSave": true,
     },
   }
 );

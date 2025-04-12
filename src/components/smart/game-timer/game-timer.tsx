@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AppTimerBar, AppTimerCountdown } from "@/features/shared/ui";
+import { AppTimerBar, AppTimerCountdown } from "@/components";
 
 interface GameTimerProps {
   totalSeconds: number;
