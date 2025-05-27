@@ -1,7 +1,8 @@
 import { useRecoilState } from "recoil";
 import { quizGameState } from "@/features/shared/states";
 import QuizLayout from "@/layouts/quiz-layout";
-import { GameQuestion, GameCell, GameTimer } from "@/components";
+import { AppQuestion } from "@/components/ui";
+import { GameCell, GameTimer } from "@/components/widgets";
 import { useCharacter, useTimerSmash } from "@/hooks";
 import { BrailleCharacter, BrailleCell } from "@/features/shared/types";
 import { useState, useCallback, useEffect } from "react";
@@ -81,7 +82,7 @@ export default function TimerSmashPage() {
       showResumeBtn={!isGameOver}
     >
       <section className="flex flex-col items-center gap-8 min-h-screen justify-center">
-        <GameQuestion
+        <AppQuestion
           question="What is the braille cell of this letter?"
           letter={character.letter}
         />
