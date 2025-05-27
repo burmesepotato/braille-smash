@@ -1,4 +1,5 @@
-import { AppButton, AppNavbar, GameMenu } from "@/components";
+import { AppButton, AppNavbar } from "@/components/ui";
+import { GameMenu } from "@/components/widgets";
 import {
   ArrowLeftStartOnRectangleIcon,
   Cog6ToothIcon,

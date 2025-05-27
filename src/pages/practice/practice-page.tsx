@@ -1,5 +1,6 @@
 import { ALPHABETS } from "@/features/shared/constants";
-import { AppNavbar, GameCell } from "@/components";
+import { AppNavbar } from "@/components/ui";
+import { GameCell } from "@/components/widgets";
 import { useNavigate } from "react-router-dom";
 
 export default function PracticePage() {
