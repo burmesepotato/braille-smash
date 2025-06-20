@@ -65,13 +65,7 @@ export default function QuizLayout({
           backBtnText="Leave Game"
           backBtnIcon={<ArrowLeftStartOnRectangleIcon className="size-8" />}
           onBack={handleOpenMenu}
-        >
-          <AppButton
-            prefixIcon={<Cog6ToothIcon className="size-8" />}
-            onClick={handleOpenSettings}
-            variant="icon"
-          />
-        </AppNavbar>
+        />
         <div className="px-8 flex flex-col gap-5 min-h-screen">{children}</div>
       </main>
     </>

@@ -25,7 +25,7 @@ export default function QuizChoosePage() {
   return (
     <main className="max-w-screen-xl mx-auto">
       <div className="flex flex-col min-h-screen px-8">
-        <AppNavbar backBtnText="Main Menu" onBack={handleBack} />
+        <AppNavbar backBtnText="Back to Home page" onBack={handleBack} />
         <section className="flex flex-col items-center gap-16 grow justify-center">
           <h1 className="text-4xl font-bold">Choose Game Mode</h1>
           <div className="flex flex-col gap-4">

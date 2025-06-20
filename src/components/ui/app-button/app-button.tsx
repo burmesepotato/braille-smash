@@ -4,6 +4,7 @@ import { ButtonHTMLAttributes, ReactNode } from "react";
 interface AppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: ReactNode;
+  hoverUnderline?: boolean;
   prefixIcon?: ReactNode;
   suffixIcon?: ReactNode;
   variant?: "default" | "icon" | "link" | "skeleton";
@@ -14,7 +15,8 @@ interface AppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const VARIANT_DEFAULT = "bg-[#04F06A] text-slate-950";
 // const VARIANT_DEFAULT = "bg-[#7D5BA6] text-white";
 const VARIANT_SKELETON = "border border-white rounded-xl";
-const VARIANT_LINK = "bg-transparent text-white px-0 min-w-fit";
+const VARIANT_LINK =
+  "bg-transparent text-white px-0 min-w-fit hover:text-yellow-500";
 const VARIANT_ICON = "p-2 !min-w-0";
 
 const SIZE_SM = "p-2 text-xs";
@@ -25,6 +27,7 @@ export const AppButton = (props: AppButtonProps) => {
   const {
     children,
     className,
+    hoverUnderline = false,
     prefixIcon,
     suffixIcon,
     variant = "default",
@@ -34,7 +37,7 @@ export const AppButton = (props: AppButtonProps) => {
   return (
     <button
       className={cn(
-        "rounded-xl flex items-center gap-1.5 justify-center",
+        "rounded-xl flex items-center gap-1.5 justify-center relative group transition-all duration-300",
         size === "sm" && SIZE_SM,
         size === "md" && SIZE_MD,
         size === "lg" && SIZE_LG,
@@ -49,6 +52,9 @@ export const AppButton = (props: AppButtonProps) => {
       {prefixIcon}
       {children}
       {suffixIcon ? suffixIcon : null}
+      {variant === "link" && hoverUnderline && (
+        <span className="absolute bottom-0 w-0 group-hover:w-1/2 left-1/4 h-0.5 bg-yellow-500 opacity-0 group-hover:opacity-100 ease-in-out duration-500" />
+      )}
     </button>
   );
 };
