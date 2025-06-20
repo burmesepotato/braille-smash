@@ -1,4 +1,5 @@
 export * from "./app-button";
+export * from "./app-button-mode";
 export * from "./app-checkbox";
 export * from "./app-footer";
 export * from "./app-menu-overlay";

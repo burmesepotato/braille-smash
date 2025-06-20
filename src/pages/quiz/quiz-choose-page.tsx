@@ -1,4 +1,4 @@
-import { AppButton, AppNavbar } from "@/components/ui";
+import { AppButtonMode, AppNavbar } from "@/components/ui";
 import { useNavigate } from "react-router-dom";
 import { GameMode } from "@/features/shared/types";
 
@@ -29,14 +29,25 @@ export default function QuizChoosePage() {
         <section className="flex flex-col items-center gap-16 grow justify-center">
           <h1 className="text-4xl font-bold">Choose Game Mode</h1>
           <div className="flex flex-col gap-4">
-            {/* <AppButton
-              label="Life Smash"
-              onClick={() => handleSelect("LIFE_SMASH")}
-              size="lg"
-            /> */}
-            <AppButton onClick={() => handleSelect("TIMER_SMASH")} size="lg">
-              Timer Smash
-            </AppButton>
+            <AppButtonMode
+              onClick={() => handleSelect("TIMER_SMASH")}
+              title="Timer Smash"
+              titleIcon="⏳"
+            >
+              <div className="text-left text-lg font-light">
+                <p>Test your speed and accuracy!</p>
+              </div>
+            </AppButtonMode>
+
+            <AppButtonMode
+              onClick={() => handleSelect("TIMER_SMASH")}
+              title="Life Smash"
+              titleIcon="💛"
+            >
+              <div className="text-left text-lg font-light">
+                <p>Test how far you can go without running out of lives</p>
+              </div>
+            </AppButtonMode>
           </div>
         </section>
       </div>

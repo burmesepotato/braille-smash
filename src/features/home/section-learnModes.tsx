@@ -13,10 +13,10 @@ export const SectionLearnModes = () => {
   };
 
   return (
-    <section className="py-24">
-      <div className="space-y-4 mb-16">
-        <h1 className="font-bold text-6xl text-center">Learn Braille</h1>
-        <p className="text-2xl leading-10 text-center">
+    <section className="py-24 max-w-screen-xl w-full mx-auto">
+      <div className="space-y-4 2xl:space-y-6 mb-20">
+        <h1 className="text-title text-center">Learn Braille</h1>
+        <p className="text-desc text-center">
           Choose your learning mode and start your Braille journey!
         </p>
       </div>
