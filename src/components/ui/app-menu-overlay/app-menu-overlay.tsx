@@ -19,11 +19,13 @@ export const AppMenuOverlay = (props: AppMenuOverlayProps) => {
         !isOpen && "opacity-0 pointer-events-none"
       )}
     >
-      <div className="max-w-screen-xl h-full mx-auto flex flex-col">
-        <div className="flex justify-end py-4 px-8">
+      <div className="max-w-screen-2xl h-full mx-auto flex flex-col">
+        <div className="flex justify-start py-4 px-8">
           <AppButton
             variant="icon"
-            prefixIcon={<XMarkIcon className="size-8" />}
+            prefixIcon={
+              <XMarkIcon className="size-8 hover:text-yellow-500 transition-colors duration-300" />
+            }
             onClick={onClose}
           />
         </div>
