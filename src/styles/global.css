@@ -23,3 +23,17 @@ body {
 .bento {
   @apply rounded-3xl p-8 border border-white;
 }
+
+.text-title {
+  @apply text-6xl font-bold 2xl:text-7xl;
+}
+
+.text-subtitle {
+  /* @apply text-3xl 2xl:text-4xl; */
+  @apply text-2xl 2xl:text-3xl leading-10 2xl:leading-loose font-medium;
+}
+
+.text-desc {
+  @apply text-2xl 2xl:text-3xl leading-10 2xl:leading-loose font-light;
+  /* @apply text-xl 2xl:text-2xl leading-10 2xl:leading-loose font-light; */
+}

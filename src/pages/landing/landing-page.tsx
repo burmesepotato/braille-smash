@@ -1,14 +1,17 @@
 import { AppFooter } from "@/components/ui";
-import { SectionHero, SectionLearnModes } from "@/features/home";
+import {
+  SectionHero,
+  SectionLearnModes,
+  SectionRoadmap,
+} from "@/features/home";
 
 export default function LandingPage() {
   return (
-    <main className="max-w-screen-xl mx-auto min-h-screen flex flex-col">
-      <div className="flex flex-col px-8 grow">
-        <SectionHero />
-        <SectionLearnModes />
-        {/* <SectionRoadmap /> */}
-      </div>
+    <main className=" min-h-screen flex flex-col">
+      <SectionHero />
+      <SectionLearnModes />
+      <SectionRoadmap />
+
       <AppFooter />
     </main>
   );
