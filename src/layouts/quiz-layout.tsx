@@ -1,9 +1,6 @@
-import { AppButton, AppNavbar } from "@/components/ui";
+import { AppNavbar } from "@/components/ui";
 import { GameMenu } from "@/components/widgets";
-import {
-  ArrowLeftStartOnRectangleIcon,
-  Cog6ToothIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +8,6 @@ interface QuizLayoutProps {
   children: React.ReactNode;
   onCloseMenu: () => void;
   onOpenMenu: () => void;
-  onOpenSettings: () => void;
   onQuitGame?: () => void;
   onRestartGame: () => void;
   showResumeBtn?: boolean;
@@ -21,7 +17,6 @@ export default function QuizLayout({
   children,
   onCloseMenu,
   onOpenMenu,
-  onOpenSettings,
   onQuitGame,
   onRestartGame,
   showResumeBtn = false,
@@ -36,10 +31,6 @@ export default function QuizLayout({
   const handleOpenMenu = () => {
     setShowMenu(true);
     onOpenMenu();
-  };
-  const handleOpenSettings = () => {
-    // TODO: Open settings modal
-    onOpenSettings();
   };
   const handleRestartGame = () => {
     onRestartGame();

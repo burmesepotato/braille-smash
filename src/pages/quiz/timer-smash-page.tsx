@@ -36,10 +36,6 @@ export default function TimerSmashPage() {
     }));
     loadNextQuestion();
   };
-  const handleSettings = () => {
-    console.log("Clicked Settings");
-    // setQuizGameState((prev) => ({ ...prev, isPaused: true }));
-  };
 
   const handleAnswerChange = useCallback(
     (cell: BrailleCell) => {
@@ -77,7 +73,6 @@ export default function TimerSmashPage() {
     <QuizLayout
       onCloseMenu={handleCloseMenu}
       onOpenMenu={handleOpenMenu}
-      onOpenSettings={handleSettings}
       onRestartGame={handleRestartGame}
       showResumeBtn={!isGameOver}
     >

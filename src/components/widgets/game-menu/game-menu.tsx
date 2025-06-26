@@ -20,7 +20,11 @@ export const GameMenu = (props: GameMenuProps) => {
   } = props;
 
   return (
-    <AppMenuOverlay onClose={onClose} isOpen={isOpen}>
+    <AppMenuOverlay
+      onClose={onClose}
+      isOpen={isOpen}
+      closeBtnText="Return To Game"
+    >
       <div className="flex flex-col gap-10 justify-center items-center grow px-12">
         {showContinueBtn && (
           <AppButton
@@ -28,9 +32,8 @@ export const GameMenu = (props: GameMenuProps) => {
             variant="link"
             size="lg"
             onClick={onContinueGame}
-            className="justify-start"
           >
-            <span className="text-5xl font-light">Continue Playing</span>
+            <span className="text-5xl">Continue Playing</span>
           </AppButton>
         )}
         <AppButton
@@ -38,18 +41,11 @@ export const GameMenu = (props: GameMenuProps) => {
           variant="link"
           size="lg"
           onClick={onRestartGame}
-          className="justify-start"
         >
-          <span className="text-5xl font-light">Restart Game</span>
+          <span className="text-5xl">Restart Game</span>
         </AppButton>
-        <AppButton
-          hoverUnderline
-          variant="link"
-          size="lg"
-          onClick={onQuitGame}
-          className="justify-start"
-        >
-          <span className="text-5xl font-light">Quit Game</span>
+        <AppButton hoverUnderline variant="link" size="lg" onClick={onQuitGame}>
+          <span className="text-5xl">Quit Game</span>
         </AppButton>
       </div>
     </AppMenuOverlay>
